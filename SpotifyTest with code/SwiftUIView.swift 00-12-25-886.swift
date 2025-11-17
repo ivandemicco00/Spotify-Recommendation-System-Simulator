@@ -1,6 +1,6 @@
 import SwiftUI
 
-// MARK: - 2. Home View (Daily Mix e Made for Ivan)
+
 
 struct HomeView: View {
     @ObservedObject var library: MusicLibrary
