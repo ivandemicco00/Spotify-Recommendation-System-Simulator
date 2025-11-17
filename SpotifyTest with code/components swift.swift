@@ -6,7 +6,7 @@
 //
 import SwiftUI
 
-// MARK: - Componenti UI Condivisi
+
 
 struct SectionTitle: View {
     let title: String
@@ -19,7 +19,7 @@ struct SectionTitle: View {
     }
 }
 
-// Row del Brano con Pulsante Mi Piace
+//SONGVIEW
 struct SongRow: View {
     let song: Song
     let isPlaying: Bool
@@ -43,11 +43,11 @@ struct SongRow: View {
             }
             Spacer()
             
-            // Pulsante Mi Piace/Cuore: Aggiorna lo stato, ma il brano resta visibile
+            
             Button {
                 library.toggleFavorite(song: song)
             } label: {
-                // Controlla lo stato attuale del brano nella libreria
+                
                 let isCurrentFavorite = library.allSongs.first(where: { $0.id == song.id })?.isFavorite ?? false
                 
                 Image(systemName: isCurrentFavorite ? "heart.fill" : "heart")

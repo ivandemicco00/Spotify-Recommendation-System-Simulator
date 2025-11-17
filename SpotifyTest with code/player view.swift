@@ -10,11 +10,11 @@
 import SwiftUI
 import Combine
 
-// MARK: - 5. Player View (Full Screen)
+
 
 struct PlayerView: View {
-    let song: Song // Il brano corrente visualizzato, passato al modale
-    @ObservedObject var library: MusicLibrary // La libreria per i controlli
+    let song: Song
+    @ObservedObject var library: MusicLibrary
     
     @Environment(\.dismiss) var dismiss
     
@@ -23,7 +23,7 @@ struct PlayerView: View {
 
     var body: some View {
         VStack {
-            // ... (Intestazione e Immagine/Dettagli invariati) ...
+            
             HStack {
                 Button {
                     dismiss()
@@ -68,7 +68,7 @@ struct PlayerView: View {
                 }
                 .padding(.horizontal)
                 
-                // Controlli di Riproduzione
+                // playcontrol
                 HStack {
                     Button {
                         library.toggleFavorite(song: song)
@@ -80,7 +80,7 @@ struct PlayerView: View {
                     
                     Spacer()
                     
-                    // BRANO PRECEDENTE (CLICCABILE)
+           
                     Button {
                         library.playPreviousSong()
                     } label: {
@@ -96,7 +96,7 @@ struct PlayerView: View {
                     }
                     .padding(.horizontal, 20)
                     
-                    // BRANO SUCCESSIVO (CLICCABILE)
+                    
                     Button {
                         library.playNextSong()
                     } label: {

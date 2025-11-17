@@ -16,14 +16,13 @@ struct HomeView: View {
         NavigationView {
             ScrollView {
                 VStack(alignment: .leading) {
-                    Text("Ciao Ivan!")
+                    Text("Hello Ivan!")
                         .font(.largeTitle)
                         .fontWeight(.bold)
                         .foregroundColor(.white)
                         .padding([.horizontal, .top])
                     
-                    // --- 1. Daily Mix Verticale (La tua playlist principale) ---
-                    SectionTitle(title: "🎶 Il tuo Daily Mix")
+                    SectionTitle(title: "🎶 Your Daily Mix")
                         .padding(.horizontal)
                         .padding(.bottom, 5)
                     
@@ -40,17 +39,17 @@ struct HomeView: View {
                     
                     Divider().padding(.vertical, 10).background(Color.clear)
                     
-                    // --- 2. Sezione Made For Ivan (Brani Piaciuti) ---
+    
                     SectionTitle(title: "Made for Ivan")
                         .padding(.horizontal)
                     
                     NavigationLink(destination: LikedSongsView(library: library)) {
                         VStack(alignment: .leading) {
-                            Text("Brani Piaciuti")
+                            Text("Liked songs")
                                 .font(.title3)
                                 .fontWeight(.semibold)
                                 .foregroundColor(.white)
-                            Text("\(library.likedSongs.count) canzoni")
+                            Text("\(library.likedSongs.count) songs")
                                 .font(.caption)
                                 .foregroundColor(.gray)
                         }
@@ -63,8 +62,8 @@ struct HomeView: View {
                     .padding(.horizontal)
                     .padding(.bottom, 30)
 
-                    // --- 3. HSTACK SCROLLABILE: Daily Mix per Genere ---
-                    SectionTitle(title: "Daily Mix Basati sui tuoi generi")
+            
+                    SectionTitle(title: "Daily Mix based on genre")
                         .padding(.horizontal)
                     
                     ScrollView(.horizontal, showsIndicators: false) {
@@ -72,19 +71,19 @@ struct HomeView: View {
                             GenreMixCard(genre: "Pop", library: library, recommender: recommender)
                             GenreMixCard(genre: "Hip Hop", library: library, recommender: recommender)
                             GenreMixCard(genre: "Rock", library: library, recommender: recommender)
-                            // Aggiungi altri generi se necessario
+             
                         }
                         .padding(.horizontal)
                         .padding(.bottom, 30)
                     }
                     
-                    // --- 4. Sezione Artisti che ti potrebbero piacere ---
-                    SectionTitle(title: "Scopri nuovi Artisti")
+
+                    SectionTitle(title: "Discover new")
                         .padding(.horizontal)
                     
                     let suggestedArtists = recommender.generateArtistSuggestions(from: library.likedSongs, maxCount: 6)
                     
-                    // Utilizziamo un Grid per mostrare le schede degli artisti
+     
                     LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 2), spacing: 10) {
                         ForEach(suggestedArtists) { song in
                             ArtistSuggestionCard(song: song, library: library)
@@ -109,7 +108,6 @@ struct HomeView: View {
     }
 }
 
-// MARK: - Componente per la card del Mix di Genere (HStack Scrollabile)
 
 struct GenreMixCard: View {
     let genre: String
@@ -141,7 +139,7 @@ struct GenreMixCard: View {
         }
         .frame(width: 150)
         .onTapGesture {
-            // Quando si clicca sul Mix, riproduce il primo brano della playlist
+            
             if let firstSong = mix.first {
                 library.setPlayingSong(firstSong)
                 showingPlayer = true
@@ -153,7 +151,7 @@ struct GenreMixCard: View {
     }
 }
 
-// MARK: - Componente per la card del Suggerimento Artista
+
 
 struct ArtistSuggestionCard: View {
     let song: Song
@@ -165,7 +163,7 @@ struct ArtistSuggestionCard: View {
                 .resizable()
                 .scaledToFill()
                 .frame(width: 150, height: 150)
-                .cornerRadius(75) // Forma circolare per l'artista
+                .cornerRadius(75)
                 .clipped()
             
             Text(song.artist)
@@ -174,7 +172,7 @@ struct ArtistSuggestionCard: View {
                 .foregroundColor(.white)
                 .lineLimit(1)
             
-            Text("Artista")
+            Text("Artist")
                 .font(.subheadline)
                 .foregroundColor(.gray)
         }

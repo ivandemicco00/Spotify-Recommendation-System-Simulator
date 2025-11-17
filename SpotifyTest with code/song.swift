@@ -7,7 +7,6 @@
 
 import Foundation
 
-// MARK: - Modello Dati
 struct Song: Identifiable, Hashable {
     let id = UUID()
     let title: String
@@ -23,7 +22,7 @@ struct Song: Identifiable, Hashable {
     }
 }
 
-// MARK: - Libreria Estesa di Canzoni (All Songs)
+
 
 let allSongsData: [Song] = [
     // --- Pop / Pop-Punk (Genere 1) ---

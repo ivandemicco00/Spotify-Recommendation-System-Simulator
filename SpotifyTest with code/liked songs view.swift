@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-// MARK: - 4. Liked Songs View (Brani Piaciuti)
+
 
 struct LikedSongsView: View {
     @ObservedObject var library: MusicLibrary
@@ -27,7 +27,7 @@ struct LikedSongsView: View {
             }
         }
         .listStyle(PlainListStyle())
-        .navigationTitle("Brani Piaciuti")
+        .navigationTitle("Liked Songs")
         .preferredColorScheme(.dark)
         .background(Color.black)
         .fullScreenCover(isPresented: $showingPlayer) {

@@ -11,7 +11,6 @@ struct PlaylistDetailView: View {
     
     var body: some View {
         List {
-            // Header simulato (copertina e info)
             VStack(alignment: .center) {
                 Image(songs.first?.coverArt ?? "placeholder")
                     .resizable()
@@ -33,9 +32,9 @@ struct PlaylistDetailView: View {
                     .padding(.bottom, 20)
             }
             .frame(maxWidth: .infinity)
-            .listRowBackground(Color.clear) // Rendi lo sfondo del Row trasparente
+            .listRowBackground(Color.clear)
             
-            // Lista dei brani della playlist
+            //songs list
             ForEach(songs) { song in
                 SongRow(song: song,
                         isPlaying: song.id == library.currentlyPlayingSong?.id,
@@ -52,7 +51,7 @@ struct PlaylistDetailView: View {
         .preferredColorScheme(.dark)
         .background(Color.black.edgesIgnoringSafeArea(.all))
         
-        // Attiva il Player Full Screen
+        // full screen player
         .fullScreenCover(isPresented: $showingPlayer) {
             PlayerView(song: library.currentlyPlayingSong ?? library.allSongs[0],
                        library: library)

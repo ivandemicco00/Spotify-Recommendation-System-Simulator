@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-// MARK: - 3. Library View
 
 struct LibraryView: View {
     @ObservedObject var library: MusicLibrary
@@ -20,7 +19,7 @@ struct LibraryView: View {
     var body: some View {
         NavigationView {
             List {
-                // Categoria Brani Piaciuti
+        //liked
                 NavigationLink {
                     LikedSongsView(library: library)
                 } label: {
@@ -28,7 +27,7 @@ struct LibraryView: View {
                 }
                 .listRowBackground(Color.black)
 
-                // Lista completa dei Brani (per non farli "sparire")
+        
                 Section {
                     ForEach(sortedSongs) { song in
                         SongRow(
@@ -43,7 +42,7 @@ struct LibraryView: View {
                         }
                     }
                 } header: {
-                    Text("Tutti i Brani")
+                    Text("All Songs")
                         .font(.headline)
                         .foregroundColor(.gray)
                 }
@@ -51,7 +50,7 @@ struct LibraryView: View {
 
             }
             .listStyle(PlainListStyle())
-            .navigationTitle("La tua Libreria")
+            .navigationTitle("Your Library")
             .navigationBarTitleDisplayMode(.large)
             .preferredColorScheme(.dark)
             .background(Color.black)
@@ -78,9 +77,9 @@ private struct LikedSongsRow: View {
                 .clipShape(RoundedRectangle(cornerRadius: 4, style: .continuous))
 
             VStack(alignment: .leading, spacing: 2) {
-                Text("Brani Piaciuti")
+                Text("Liked Songs")
                     .foregroundColor(.white)
-                Text("Playlist • \(count) canzoni")
+                Text("Playlist • \(count) songs")
                     .font(.caption)
                     .foregroundColor(.gray)
             }

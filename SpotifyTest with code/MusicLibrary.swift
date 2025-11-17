@@ -10,10 +10,9 @@ import Foundation
 import Combine
 
 
-// MARK: - La Sorgente Unica della Verità
 class MusicLibrary: ObservableObject {
     @Published var allSongs: [Song] = allSongsData.map {
-        // ... (resto della logica di inizializzazione) ...
+        
         var song = $0
         if ["Good 4 u", "Therefore I Am", "Levitating"].contains(song.title) {
             song.isFavorite = true
@@ -42,32 +41,32 @@ class MusicLibrary: ObservableObject {
         isPlaying = true
     }
     
-    // MARK: - Nuove Funzioni di Navigazione
     
-    // Trova il brano successivo nella libreria completa
+    
+    
     func playNextSong() {
         guard let currentSong = currentlyPlayingSong else { return }
         
-        // Trova l'indice del brano corrente nella lista completa e ordinata
+       
         let sortedSongs = allSongs.sorted { $0.title < $1.title }
         if let currentIndex = sortedSongs.firstIndex(where: { $0.id == currentSong.id }) {
             
-            // Calcola l'indice successivo (fa il wrap intorno se arriviamo alla fine)
+  
             let nextIndex = (currentIndex + 1) % sortedSongs.count
             currentlyPlayingSong = sortedSongs[nextIndex]
             isPlaying = true
         }
     }
     
-    // Trova il brano precedente nella libreria completa
+
     func playPreviousSong() {
         guard let currentSong = currentlyPlayingSong else { return }
         
-        // Trova l'indice del brano corrente nella lista completa e ordinata
+
         let sortedSongs = allSongs.sorted { $0.title < $1.title }
         if let currentIndex = sortedSongs.firstIndex(where: { $0.id == currentSong.id }) {
             
-            // Calcola l'indice precedente (fa il wrap intorno se arriviamo all'inizio)
+           
             let previousIndex = (currentIndex - 1 + sortedSongs.count) % sortedSongs.count
             currentlyPlayingSong = sortedSongs[previousIndex]
             isPlaying = true

@@ -8,7 +8,7 @@
 import SwiftUI
 
 
-// MARK: - Componente per la card della Playlist (Verticale)
+
 
 struct PlaylistCard: View {
     let title: String
@@ -17,7 +17,6 @@ struct PlaylistCard: View {
     
     var body: some View {
         HStack(spacing: 15) {
-            // Simula un collage di copertine (usa solo la prima per semplicità)
             Image(songs.first?.coverArt ?? "placeholder")
                 .resizable()
                 .scaledToFill()
